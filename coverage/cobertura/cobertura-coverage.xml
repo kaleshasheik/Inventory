@@ -1,0 +1,154 @@
+<?xml version="1.0" ?>
+<!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
+<coverage lines-valid="32"  lines-covered="12"  line-rate="0.375"  branches-valid="3"  branches-covered="0"  branch-rate="0"  timestamp="1541941259142" complexity="0" version="0.1">
+<sources>
+	<source>F:\projects\FE\inventory</source>
+</sources>
+<packages>
+	<package name="common.constants"  line-rate="0.3333"  branch-rate="1" >
+	<classes>
+		<class name="actionTypes.ts"  filename="src\common\constants\actionTypes.ts"  line-rate="0.3333"  branch-rate="1" >
+		<methods>
+			<method name="(anonymous_1)"  hits="1"  signature="()V" >
+				<lines><line number="1"  hits="1" /></lines>
+			</method>
+			<method name="(anonymous_2)"  hits="0"  signature="()V" >
+				<lines><line number="1"  hits="0" /></lines>
+			</method>
+		</methods>
+		<lines>
+			<line number="1"  hits="1"  branch="false" />
+			<line number="2"  hits="0"  branch="false" />
+			<line number="3"  hits="0"  branch="false" />
+		</lines>
+		</class>
+	</classes>
+	</package>
+	<package name="components"  line-rate="1"  branch-rate="1" >
+	<classes>
+		<class name="Hello.spec.ts"  filename="src\components\Hello.spec.ts"  line-rate="1"  branch-rate="1" >
+		<methods>
+			<method name="(anonymous_1)"  hits="1"  signature="()V" >
+				<lines><line number="1"  hits="1" /></lines>
+			</method>
+			<method name="(anonymous_2)"  hits="1"  signature="()V" >
+				<lines><line number="1"  hits="1" /></lines>
+			</method>
+			<method name="(anonymous_3)"  hits="1"  signature="()V" >
+				<lines><line number="4"  hits="1" /></lines>
+			</method>
+			<method name="(anonymous_4)"  hits="1"  signature="()V" >
+				<lines><line number="5"  hits="1" /></lines>
+			</method>
+		</methods>
+		<lines>
+			<line number="1"  hits="1"  branch="false" />
+			<line number="2"  hits="1"  branch="false" />
+			<line number="3"  hits="1"  branch="false" />
+			<line number="4"  hits="1"  branch="false" />
+			<line number="5"  hits="1"  branch="false" />
+			<line number="6"  hits="1"  branch="false" />
+		</lines>
+		</class>
+	</classes>
+	</package>
+	<package name="model"  line-rate="0.5"  branch-rate="1" >
+	<classes>
+		<class name="index.ts"  filename="src\model\index.ts"  line-rate="0.5"  branch-rate="1" >
+		<methods>
+			<method name="(anonymous_1)"  hits="1"  signature="()V" >
+				<lines><line number="1"  hits="1" /></lines>
+			</method>
+			<method name="(anonymous_2)"  hits="0"  signature="()V" >
+				<lines><line number="1"  hits="0" /></lines>
+			</method>
+		</methods>
+		<lines>
+			<line number="1"  hits="1"  branch="false" />
+			<line number="2"  hits="0"  branch="false" />
+		</lines>
+		</class>
+		<class name="inventoryEntity.ts"  filename="src\model\inventoryEntity.ts"  line-rate="0.5"  branch-rate="1" >
+		<methods>
+			<method name="(anonymous_1)"  hits="1"  signature="()V" >
+				<lines><line number="1"  hits="1" /></lines>
+			</method>
+			<method name="(anonymous_2)"  hits="0"  signature="()V" >
+				<lines><line number="1"  hits="0" /></lines>
+			</method>
+		</methods>
+		<lines>
+			<line number="1"  hits="1"  branch="false" />
+			<line number="2"  hits="0"  branch="false" />
+		</lines>
+		</class>
+	</classes>
+	</package>
+	<package name="reducers"  line-rate="0.15380000000000002"  branch-rate="0" >
+	<classes>
+		<class name="index.ts"  filename="src\reducers\index.ts"  line-rate="0.2"  branch-rate="1" >
+		<methods>
+			<method name="(anonymous_1)"  hits="1"  signature="()V" >
+				<lines><line number="1"  hits="1" /></lines>
+			</method>
+			<method name="(anonymous_2)"  hits="0"  signature="()V" >
+				<lines><line number="1"  hits="0" /></lines>
+			</method>
+		</methods>
+		<lines>
+			<line number="1"  hits="1"  branch="false" />
+			<line number="2"  hits="0"  branch="false" />
+			<line number="3"  hits="0"  branch="false" />
+			<line number="4"  hits="0"  branch="false" />
+			<line number="6"  hits="0"  branch="false" />
+		</lines>
+		</class>
+		<class name="inventory.ts"  filename="src\reducers\inventory.ts"  line-rate="0.125"  branch-rate="0" >
+		<methods>
+			<method name="(anonymous_1)"  hits="1"  signature="()V" >
+				<lines><line number="1"  hits="1" /></lines>
+			</method>
+			<method name="(anonymous_2)"  hits="0"  signature="()V" >
+				<lines><line number="1"  hits="0" /></lines>
+			</method>
+			<method name="(anonymous_3)"  hits="0"  signature="()V" >
+				<lines><line number="4"  hits="0" /></lines>
+			</method>
+		</methods>
+		<lines>
+			<line number="1"  hits="1"  branch="false" />
+			<line number="2"  hits="0"  branch="false" />
+			<line number="3"  hits="0"  branch="false" />
+			<line number="4"  hits="0"  branch="false" />
+			<line number="5"  hits="0"  branch="true"  condition-coverage="0% (0/2)" />
+			<line number="6"  hits="0"  branch="true"  condition-coverage="0% (0/1)" />
+			<line number="8"  hits="0"  branch="false" />
+			<line number="10"  hits="0"  branch="false" />
+		</lines>
+		</class>
+	</classes>
+	</package>
+	<package name="store"  line-rate="0.16670000000000001"  branch-rate="1" >
+	<classes>
+		<class name="index.ts"  filename="src\store\index.ts"  line-rate="0.16670000000000001"  branch-rate="1" >
+		<methods>
+			<method name="(anonymous_1)"  hits="1"  signature="()V" >
+				<lines><line number="1"  hits="1" /></lines>
+			</method>
+			<method name="(anonymous_2)"  hits="0"  signature="()V" >
+				<lines><line number="1"  hits="0" /></lines>
+			</method>
+		</methods>
+		<lines>
+			<line number="1"  hits="1"  branch="false" />
+			<line number="2"  hits="0"  branch="false" />
+			<line number="3"  hits="0"  branch="false" />
+			<line number="4"  hits="0"  branch="false" />
+			<line number="5"  hits="0"  branch="false" />
+			<line number="6"  hits="0"  branch="false" />
+		</lines>
+		</class>
+	</classes>
+	</package>
+</packages>
+</coverage>
