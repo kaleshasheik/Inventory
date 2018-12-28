@@ -26,71 +26,24 @@ var config = {
         rules: [
             { test: /\.(ts|tsx)$/, use: 'ts-loader' },
             {
-                test: /\.(sa|sc)ss$/,
+                test: /\.(sa|sc|c)ss$/,
                 use: [
                     devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
                     'css-loader',
                     'sass-loader',
-                   
+
                 ],
-               
             },
             {
-                test: /\.css$/,
-                use: [
-                  "style-loader",
-                  {
-                    loader: "css-loader",
-                    options: {
-                      modules: true, // default is false
-                      sourceMap: true,
-                      importLoaders: 1,
-                      localIdentName: "[name]--[local]--[hash:base64:8]"
-                    }
-                  },
-                  "postcss-loader"
-                ]
-              },
-          
-              {
                 test: /\.(pdf|jpg|png|gif|svg|ico)$/,
                 use: [
-                  {
-                    loader: "url-loader"
-                  }
+                    {
+                        loader: 'url-loader'
+                    },
                 ]
-              },
-            {
-                type: "javascript/auto",
-                test: /\.json$/,
-                use: [
-                  {
-                    loader: "file-loader",
-                    options: {
-                      name: "./translations/[name].[ext]"
-                    }
-                  }
-                ]
-              },
-              {
-                test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-                use: [
-                  {
-                    loader: "file-loader",
-                    options: {
-                      name: "[name].[ext]",
-                      outputPath: "fonts/"
-                    }
-                  }
-                ]
-              }
+            }
         ]
     },
-    devServer: {
-        historyApiFallback: true,
-        contentBase: "./",
-        hot: true
-      },
     plugins: [
         new webpack.ProgressPlugin(),
         new HtmlWebpackPlugin({ template: './index.html' }),
