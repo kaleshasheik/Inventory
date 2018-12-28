@@ -1,0 +1,28 @@
+li.left {
+    float: left;
+    display: block;
+   
+ }
+a{
+
+    text-decoration: none;
+    color: orange;
+    font-size: 2;
+    font-weight: 400;
+    flex-wrap: wrap;
+    margin-left: 30%;
+   
+}
+li.right {
+    float: right;
+    display: block;
+    text-align:right;
+    font-size: 2;
+    font-weight: 400;
+    margin-right: 3%;
+}
+ul{
+
+    margin-top: 10px;
+
+}

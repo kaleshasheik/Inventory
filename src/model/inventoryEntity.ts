@@ -1,3 +1,3 @@
 export interface InventoryEntity {
-    id: number;
+    id: number
   }
