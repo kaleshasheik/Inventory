@@ -22,13 +22,16 @@ export class DashBoardPage extends React.Component<DashBoardProps, {}> {
 
                 <Grid container spacing={24}>
         <Grid item xs={10} sm={6}>
-                {data && _.size(data.headers)>0 && _.size(data.colummns)> 0 && <TableData headers={data.headers} coulmns={data.colummns} />}
+                {data && _.size(data.headers)>0 && _.size(data.colummns)> 0 && <TableData needButton={true} headers={data.headers} coulmns={data.colummns} />}
                 </Grid>
         <Grid item xs={10} sm={6}>
-        {data && _.size(data.headers)>0 && _.size(data.colummns)> 0 && <TableData headers={data.headers} coulmns={data.colummns} />}
+        {data && _.size(data.headers)>0 && _.size(data.colummns)> 0 && <TableData needButton={true} headers={data.headers} coulmns={data.colummns} />}
 
         </Grid>
+        
         </Grid>
+       
+
             </React.Fragment>
         )
     }

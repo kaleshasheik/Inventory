@@ -23,6 +23,7 @@ import {LOGINFORMPASSWORD,LOGINFORMTITLE} from '../common/constants/form.const'
 import { RouteComponentProps, withRouter, Link } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import {  Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 
 const styles = (theme: Theme) => createStyles({
@@ -30,9 +31,8 @@ const styles = (theme: Theme) => createStyles({
 
         width: 'auto',
         display: 'block',
-        marginLeft: theme.spacing.unit * 3,
-        marginRight: theme.spacing.unit * 3,
-        marginTop: theme.spacing.unit * 20,
+        alignItems: 'center',
+        marginTop: theme.spacing.unit * 10,
         [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
             width: 400,
             marginLeft: 'auto',
@@ -40,7 +40,7 @@ const styles = (theme: Theme) => createStyles({
         },
     },
     paper: {
-        marginTop: theme.spacing.unit * 8,
+       
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -56,24 +56,32 @@ const styles = (theme: Theme) => createStyles({
         marginTop: theme.spacing.unit,
     },
     submit: {
-        marginTop: theme.spacing.unit,
+      
         backgroundColor: 'darkorange',
         color: 'white',
-        marginLeft: theme.spacing.unit * 26,
+        marginLeft: theme.spacing.unit * 27,
         borderRadius: '12px',
-        width: theme.spacing.unit * 11,
-        float: 'right',
+        width: theme.spacing.unit * 14,
+       
         textTransform: 'none',
+        "&:hover": {
+            textDecoration: 'none',
+            backgroundColor:'orange'
+          }
        
     },
     reset: {
-        marginTop: -35,
-        backgroundColor: '#C0C0C0',
-        color: 'black',
-        marginRight: theme.spacing.unit * 26,
-        borderRadius: '12px',
-        width: theme.spacing.unit * 11,
+        marginTop: -30,
+        color: 'darkorange',
+        marginRight: theme.spacing.unit * 25,
+        textDecoration: 'none',
+        width: theme.spacing.unit * 24,
         textTransform: 'none',
+        "&:hover": {
+            textDecoration: 'none',
+            color:'orange',
+            backgroundColor: 'transparent',
+          }
     },
     formcontrol: {
         width: '100%',
@@ -87,8 +95,12 @@ const styles = (theme: Theme) => createStyles({
         marginTop: '-20px',
         // marginBottom: theme.spacing.unit * 2,
 
-
-
+    },
+    titile:{
+        marginBottom: theme.spacing.unit * 3,
+    },
+    modal:{
+        marginTop: theme.spacing.unit * 16,
     },
     password:{
         marginLeft: theme.spacing.unit * 10,
@@ -111,6 +123,7 @@ export interface LoginFormState {
     Emailerror: string
     Passworderror: string
     open: boolean
+    modal: boolean
     
 
 }
@@ -125,7 +138,7 @@ class LoginForm extends React.Component<LoginFormProps, LoginFormState> {
             Emailerror: '',
             Passworderror: '',
             open: false,
-            
+            modal: false
 
         }
     }
@@ -184,6 +197,13 @@ class LoginForm extends React.Component<LoginFormProps, LoginFormState> {
       
     }
 
+    forgotPassword = () => {
+      
+        this.setState({
+            modal: !this.state.modal
+          });
+    }
+
     handleSubmit = () => {
         this.resetErrors()
         this.validateEmail()
@@ -203,27 +223,42 @@ class LoginForm extends React.Component<LoginFormProps, LoginFormState> {
 
                 <CssBaseline />
                 {this.props.loginError}
-                <Paper className={classes.paper}>
+                <div className={classes.paper}>
                     <Avatar className={classes.avatar}>
                         <LockIcon />
                     </Avatar>
-                    <Typography component='h1' variant='h3'>
+                    <Typography className={classes.titile} component='h1' variant='h3'>
                     {LOGINFORMTITLE} 
         </Typography>
 
-                    <FormControl margin='normal' fullWidth>
-                        <TextBox name='Email' type='email' label='Email Address' variant='standard' value={this.state.Email} error={this.state.Emailerror} onChange={this.onTextChange.bind(this)} />
+                    <FormControl className={classes.formcontrol} margin='normal' fullWidth>
+                        <TextBox name='Email' type='email' label='Email Address' variant='outlined' value={this.state.Email} error={this.state.Emailerror} onChange={this.onTextChange.bind(this)} />
                     </FormControl>
                     <FormControl className={classes.formcontrol} margin='normal' fullWidth>
-                        <TextBox name='Password' type='password' label='Password' variant='standard' value={this.state.Password} error={this.state.Passworderror} onChange={this.onTextChange.bind(this)} />
+                        <TextBox name='Password' type='password' label='Password' variant='outlined' value={this.state.Password} error={this.state.Passworderror} onChange={this.onTextChange.bind(this)} />
                     </FormControl>
                     <FormControl className={classes.formcontrol} margin='normal' fullWidth >
+                     
                         <ButtonBox type='submit' name='Sign In' class={classes.submit} disabled={this.state.buttonEnabled} onClick={this.handleSubmit.bind(this)} />
-                        <ButtonBox type='button' name='Reset' class={classes.reset} disabled={this.state.buttonEnabled} onClick={this.resetInput.bind(this)} />
+                        
+                        <Button onClick={this.forgotPassword.bind(this)} className={classes.reset}>Forgot Password ?</Button>
                         </FormControl>
                         
-                </Paper>
+                </div>
                
+                <Modal className={classes.modal} isOpen={this.state.modal} >
+          <ModalHeader> Reset Password</ModalHeader>
+          <ModalBody>
+        <TextBox name='Email' type='email' label='Email Address' variant='outlined' value={this.state.Email} error={this.state.Emailerror} onChange={this.onTextChange.bind(this)} />
+        <TextBox name='Password' type='password' label='Password' variant='outlined' value={this.state.Password} error={this.state.Passworderror} onChange={this.onTextChange.bind(this)} />
+        <TextBox name='Confirm Password' type='password' label='Confirm Password' variant='outlined' value={this.state.Password} error={this.state.Passworderror} onChange={this.onTextChange.bind(this)} />
+
+          </ModalBody>
+          <ModalFooter>
+            <Button onClick={this.forgotPassword.bind(this)} color="primary">Change Password</Button>{' '}
+            <Button onClick={this.forgotPassword.bind(this)} color="secondary" >Cancel</Button>
+          </ModalFooter>
+        </Modal>
             </main>
 
 

@@ -11,7 +11,8 @@ import FormControl from '@material-ui/core/FormControl'
 import {Header} from '../core-libs/components/Header'
 import ButtonBox from '../core-libs/ButtonBox'
 import Paper from '@material-ui/core/Paper'
-
+import { Card, CardImg, CardText, CardBody,
+    CardTitle, CardSubtitle, Button } from 'reactstrap';
 
  export interface RequestFormProps {
      classes: any
@@ -31,36 +32,44 @@ export interface RequestFormState {
 
 const styles = (theme:Theme) => createStyles({
     main: {
-       
-      [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
-        width: 400,
-        marginLeft: theme.spacing.unit * 70,
-        marginRight: theme.spacing.unit * 170,
-        margin: 0,
-      },
-      margin: 0,
-   
-      alignItems: 'center',
-       padding: `${theme.spacing.unit * 1}px ${theme.spacing.unit * 3}px  ${theme.spacing.unit * 3}px `,
+
+        width: 'auto',
+        display: 'block',
+        alignItems: 'center',
+        marginTop: theme.spacing.unit *10 ,
+        [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
+            width: 400,
+            marginLeft: 'auto',
+            marginRight: 'auto',
+        },
+        marginBottom: '50px',
     },
     paper: {
-        margin: 0,
-      marginTop: theme.spacing.unit * 2,
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-       padding: `${theme.spacing.unit * 1}px ${theme.spacing.unit * 3}px  ${theme.spacing.unit * 3}px `,
        
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px`,
+      
     },
+  
     avatar: {
       margin: theme.spacing.unit,
       backgroundColor: theme.palette.secondary.main,
     },
     form: {
       width: '100%',
-      marginTop: theme.spacing.unit * 5,
+      marginTop: theme.spacing.unit * 1,
       margin: 0,
-      
+     
+     
+    },
+    titile:
+    {
+
+        width:'100%',
+        height:'1px',
+       
     },
     formcontrol: {
         width: '100%',
@@ -82,15 +91,24 @@ const styles = (theme:Theme) => createStyles({
         width: '100%',
       },
       submit: {
-        marginTop: theme.spacing.unit ,
+        marginTop: -17 ,
         backgroundColor: 'darkorange',
         color: 'white',
-        marginLeft: theme.spacing.unit * 20,
+        marginLeft: theme.spacing.unit * 27,
         borderRadius: '12px',
-        width:'40%',
+        width: '30%',
         textTransform: 'none',
-      
+        bottom: '20px'
       },
+      reset: {
+        marginTop: 10,
+        backgroundColor: '#C0C0C0',
+        color: 'black',
+        width: '30%',
+        borderRadius: '12px',
+      
+        textTransform: 'none',
+    },
   })
 
  class RequestForm extends React.Component<RequestFormProps,RequestFormState> {
@@ -107,6 +125,13 @@ const styles = (theme:Theme) => createStyles({
             error: '',
         }
     }
+
+    resetInput = () => {
+        this.setState({ UserId: '', Name: '',Inventory: '' ,Reason: '', StartDate: null, EndDate: null })
+      
+    }
+
+
     onTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         event.preventDefault()
 
@@ -134,6 +159,14 @@ const styles = (theme:Theme) => createStyles({
 
     }
 
+    setDate = (field:string, value: any) => {
+        
+        this.setState({ ...this.state, [field]: value })
+                 
+    }
+    
+    
+
     handleSubmit = () => {
        
         this.validateField()
@@ -146,13 +179,18 @@ const styles = (theme:Theme) => createStyles({
         return (
             <React.Fragment>
              
-               <Header size={3} text={`Inventory Form`} css='header' />
-                <hr />
+           
                
                 <main className={classes.main}>
+               
       <CssBaseline />
-    
-        <form className={classes.form}>
+     
+      <Header size={3} text={`Inventory Form`} css='header' />
+       <hr></hr>
+
+               
+      <div className={classes.paper}>
+      
         <FormControl className={classes.formcontrol}  fullWidth >
           <TextBox name='UserId' label='User Id' type='text' variant='outlined' value= {this.state.UserId} error =''onChange={this.onTextChange.bind(this)} />           
           </FormControl>
@@ -164,25 +202,24 @@ const styles = (theme:Theme) => createStyles({
             <SelectBox name='Inventory' label='InventoryType' invTypes={invTypes}  error={this.state.error} value={this.state.Inventory}  onChange={this.onTextChange.bind(this)}/>        
             </FormControl>
             <FormControl  className={classes.startdatecontrol} fullWidth >
-            <DateField name='StartDate' label='Start Date' onChange={this.onDateChange.bind(this)}/>
+            <DateField name='StartDate' label='Start Date' value={this.state.StartDate} onChange={this.onDateChange.bind(this)} dateValue={this.setDate}  />
             </FormControl>
             <FormControl className={classes.formcontrol} fullWidth >
-            <DateField name='EndDate' label='End Date' onChange={this.onDateChange.bind(this)}/>
+            <DateField name='EndDate' label='End Date' value={this.state.EndDate} onChange={this.onDateChange.bind(this)} dateValue={this.setDate}  />
             </FormControl>
             <FormControl className={classes.formcontrol} fullWidth >
           <TextBox name='Reason' label='Reason' type='text' variant='outlined' value= {this.state.Reason} error =''  onChange={this.onTextChange.bind(this)} />        
           </FormControl>
 
+        <FormControl   >
+        <ButtonBox type='submit' name='Reset' class={classes.reset}  onClick={this.resetInput.bind(this)}/>
 
-
-        <FormControl  required ></FormControl>
         <ButtonBox type='submit' name='Submit' class={classes.submit}  onClick={this.handleSubmit.bind(this)}/>
-
-          
-        </form>
+        </FormControl>
+        </div>
         
        
-      
+       
     </main>
              
                

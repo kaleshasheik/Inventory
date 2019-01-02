@@ -1,6 +1,11 @@
 import * as React from 'react'
 import { withStyles, createStyles, Theme, createMuiTheme ,MuiThemeProvider} from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
+import ExitToApp from '@material-ui/icons/ExitToApp'
+import Send from '@material-ui/icons/Send'
+import Cancel from '@material-ui/icons/Cancel'
+
+
 
 interface Istyle{
 
@@ -46,6 +51,9 @@ const styles = (theme:Theme) => createStyles({
       marginLeft: theme.spacing.unit * 25,
      
     },
+    rightIcon: {
+      marginLeft: theme.spacing.unit,
+    },
     formcontrol: {
         width: '100%',
        // marginTop: 0,
@@ -63,13 +71,15 @@ const styles = (theme:Theme) => createStyles({
 
 export interface ButtonProps { 
     type: string
-    name: string
+    name?: string
     style?:Istyle
     disabled?: boolean
     // onClick?: (x?: any) => void
-    onClick:(event: React.ChangeEvent<HTMLInputElement>) => void
+    onClick?:(event: React.ChangeEvent<HTMLInputElement>)  => void
     classes?: any
     class?: any
+    value ?: string
+    label?: string
 }
 
   class ButtonBox extends React.Component<ButtonProps, {}> {
@@ -84,6 +94,16 @@ export interface ButtonProps {
     render() {
         const {classes}= this.props
        
+        let icon = null; 
+if (this.props.name === "Sign In") {
+  icon = <ExitToApp className={classes.rightIcon} />
+} else if (this.props.name === "Submit") {
+  icon =  <Send className={classes.rightIcon}/>
+}
+else if (this.props.label === "Cancel") {
+  icon =  <Cancel fontSize="large" color="secondary" className={classes.rightIcon}/>
+}
+
 
         console.log('style', this.props.style)
         return ( 
@@ -91,11 +111,14 @@ export interface ButtonProps {
             <Button 
             type={this.props.type}
             
-            variant='outlined'
+          
             
             className={this.props.class} onClick={this.onSubmit.bind(this)}
           >
-           {this.props.name}
+           {this.props.name} 
+
+          {icon}
+
           </Button>
 
         )

@@ -5,13 +5,16 @@
     margin-bottom: 1%;
     color: #23333D;
     margin-left: 22%;
-    position: 'fixed';
+   
   }
 
   hr {
-    margin-top: 5px;
-    margin-left: 22%;
-    margin-right: 25%;
-    border: 2px solid #59B;
-    position: 'fixed';
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 4px solid #59B;
+    margin: 1em 0;
+    padding: 0;
   }
+
+  

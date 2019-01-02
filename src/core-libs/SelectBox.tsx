@@ -113,7 +113,7 @@ const theme = createMuiTheme({
             
           >
            
-           <MenuItem   value=''> </MenuItem>
+           <MenuItem   value=''>Please Select One</MenuItem>
             {this.props.invTypes.map((type:inventoryTypes, i: number) => {
        return <MenuItem   key={i}  value={type.name}> {type.name}</MenuItem>
             }) }

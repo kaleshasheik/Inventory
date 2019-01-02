@@ -10,6 +10,13 @@ import Table from '@material-ui/core/Table'
 import Paper from '@material-ui/core/Paper'
 import { withStyles, createStyles, Theme, createMuiTheme ,MuiThemeProvider} from '@material-ui/core/styles'
 import * as _ from 'lodash'
+import ButtonBox from '../core-libs/ButtonBox'
+import IconButton from '@material-ui/core/IconButton';
+import Cancel from '@material-ui/icons/Cancel'
+import Tooltip from '@material-ui/core/Tooltip';
+import AssignmentReturn from '@material-ui/icons/AssignmentReturn'
+
+
 interface Iheader{
     name: string
 }
@@ -26,9 +33,9 @@ interface Icolumns{
 
 const CustomTableCell = withStyles(theme => ({
     head: {
-       backgroundColor: '#486c7a',
-     
-      color: theme.palette.common.white,
+       backgroundColor: '#779ecb',
+       width: '10%',
+      color: 'white',
       fontSize: 17,
     },
     body: {
@@ -38,15 +45,50 @@ const CustomTableCell = withStyles(theme => ({
   
   const styles = (theme:Theme) => createStyles({
     root: {
-        width: '80%',
+        width: '10%',
         marginTop: theme.spacing.unit * 13,
-        marginLeft: theme.spacing.unit * 10,
+        marginLeft: theme.spacing.unit * 8,
         marginRight: theme.spacing.unit * 10,
-        overflowX: 'auto',
+        overflowX: 'visible',
+        bottom: '20px',
+       marginBottom: '50px',
+       justifyContent: 'space-between',
       },
       table: {
-        minWidth: 100,
+        width: '10%',
+        overflowX: 'visible',
+        bottom: '20px',
+       
       },
+
+      row: {
+        '&:nth-of-type(even)': {
+          backgroundColor: '#F8F8F8'
+        },
+      },
+      surrender:{
+
+  color: 'green'
+},
+cancel:{
+  color: 'red'
+},
+      submit: {
+        backgroundColor: 'white',
+        color: 'black',
+        marginTop: '5px',
+        border: '2px solid #779ecb',
+        borderRadius: '12px',
+        width:'80%',
+        height: '2%',
+        textTransform: 'none',
+        marginLeft: theme.spacing.unit * 3,
+        "&:hover": {
+          textDecoration: 'none',
+          backgroundColor:'#779ecb'
+        }
+      },
+     
      
     });
   
@@ -54,6 +96,7 @@ export interface TableHeaderProps {
     headers: Iheader[]
     coulmns: Icolumns[]
     classes?: any
+    needButton?: boolean
 }
 
 export interface TableHeaderState { 
@@ -66,21 +109,49 @@ export interface TableHeaderState {
         super(props)
         
     }
-
+    handleSubmit = () => {
+       
+      console.log('state', this.state)
+  }
+   
+ 
     
     render() {
         const {classes} = this.props
         
-     /*  const data1 = _.map( this.props.coulmns, function(v) {
-          return _.values( v );
-       });
-       
-       console.log("data1", data1); */
+        const row = (x:any, i:number, header:Iheader[]) =>
+        <TableRow className={this.props.classes.row} key={`tr-${i}`}>
+          {header.map((y:any, k:any) =>
+           
+            <CustomTableCell   key={`trc-${k}`}>
+              {x[y.prop]} 
+            </CustomTableCell>
+         
+          )}
+     
+ {this.props.needButton && x.status !== 'available' ? (
+          <Tooltip title="Surrender Inventory" aria-label="Add">
+        <IconButton   type='submit' onClick={this.handleSubmit.bind(this)} name= 'Surrender' value={x.RequestNo}  >
+        <AssignmentReturn fontSize="default"  className={classes.surrender} />
+        </IconButton>
+        </Tooltip>
+        ) : 
+      ( <Tooltip title="Cancel this request" aria-label="Cancel">
+         <IconButton  type='submit'  name='Cancel' value={x.RequestNo}  >  
+      <Cancel fontSize="default"  className={classes.cancel} />
+      </IconButton>
+      </Tooltip>
+      )
+      }
+          
+        
+
+        </TableRow>
+      
 
         return ( 
-            <div>
-          
-          <Paper className={classes.root}>
+            <div className={classes.root} >
+    
       <Table className={classes.table} cellPadding={1}>
      
             <TableHead>
@@ -88,17 +159,19 @@ export interface TableHeaderState {
                      {this.props.headers.map((header:Iheader, i: number) => {
                         return <CustomTableCell key={i}>{header.name}</CustomTableCell>
                     }) }
+                    <CustomTableCell >  </CustomTableCell>
                 </TableRow>
             </TableHead>
 
 
 
      <TableBody>
+
       {this.props.coulmns.map((x:Icolumns, i:number) => row(x, i, this.props.headers))}
     </TableBody>
             </Table>    
          
-         </Paper>
+   
         
     
       </div>
@@ -106,16 +179,6 @@ export interface TableHeaderState {
         
     }
 }
-
-
-const row = (x:any, i:number, header:Iheader[]) =>
-  <TableRow  key={`tr-${i}`}>
-    {header.map((y:any, k:any) =>
-      <CustomTableCell   key={`trc-${k}`}>
-        {x[y.prop]}
-      </CustomTableCell>
-    )}
-  </TableRow>
 
 
  

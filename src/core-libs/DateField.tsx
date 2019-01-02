@@ -28,6 +28,8 @@ export interface DateFieldProps
     name: string
     style?: any
     label: string
+    dateValue: any
+    value: any
     
    }
    export interface DateFieldState {
@@ -46,23 +48,12 @@ export class DateField extends React.Component<DateFieldProps, DateFieldState> {
     }
 }
 
-       handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      
-         console.log(event)
-          this.props.onChange(event)
-      }
-   
-      handleChange1(date:any){
-        console.log('value', date)
-    }
 
     handleDateChange = (datevalue:any) => {
         
       console.log('datevalue', datevalue)
-      this.setState({ selectedDate: datevalue })
-       
-        console.log('handleDateChange', this.state)
-
+     
+      this.props.dateValue(this.props.name, datevalue );
 
       }
     
@@ -84,7 +75,7 @@ export class DateField extends React.Component<DateFieldProps, DateFieldState> {
             variant='outlined'
             margin='dense'
             name={this.props.name}
-            value={this.state.selectedDate}
+            value={this.props.value}
             label={this.props.label}
             onChange={this.handleDateChange}
             format='dd/MM/yyyy'

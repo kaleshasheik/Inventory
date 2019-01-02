@@ -4,8 +4,9 @@ import TextField from '@material-ui/core/TextField'
 import { withStyles, createStyles, Theme, createMuiTheme ,MuiThemeProvider} from '@material-ui/core/styles'
 import purple from '@material-ui/core/colors/purple'
 import green from '@material-ui/core/colors/lightGreen'
-
-
+import Grid from '@material-ui/core/Grid';
+import Lock from '@material-ui/icons/Lock';
+import InputAdornment from '@material-ui/core/InputAdornment';
 
 export interface TextBoxProps 
   {
@@ -61,6 +62,7 @@ const styles = (theme:Theme) => createStyles({
     },
   },
   
+  
 })
 
 const theme = createMuiTheme({
@@ -88,15 +90,16 @@ const theme = createMuiTheme({
       }
    
       
-   
     render() {
       const { classes } = this.props
       
-            return ( 
+               return ( 
   
           <MuiThemeProvider theme={theme}>
-       
-        <TextField  margin='dense'  fullWidth  
+            
+          
+          
+        <TextField  margin='dense'    fullWidth 
         value={this.props.value} name={this.props.name}   type={this.props.type} 
         error={this.props.error !== ''}
       helperText={this.props.error !== '' ? this.props.error : ' '}
@@ -105,8 +108,8 @@ const theme = createMuiTheme({
           label={this.props.label} 
           variant= {this.props.variant}
           id={this.props.name}   
-
-        
+          
+              
 
         />
 
@@ -119,13 +122,10 @@ const theme = createMuiTheme({
 }
 
 
+
 const Textstyle = {
        
-  margin: '0px 12px 0',
-  left: 500,
-  top: 40,
-  // height: 60,
-
+  marginTop: '10%'
  }
 
 export default withStyles(styles)(TextBox)
